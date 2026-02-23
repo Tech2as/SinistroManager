@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="SinistroManager.Console/SinistroManager.Console.csproj" />
+  <Project Path="SinistroManager.Domain/SinistroManager.Domain.csproj" />
+</Solution>
