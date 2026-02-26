@@ -1,5 +1,4 @@
-namespace SinistroManager.Domain;
-
+namespace SinistroManager.Domain.Entities;
 public abstract class User
 {
     public string Name { get; private set; }
