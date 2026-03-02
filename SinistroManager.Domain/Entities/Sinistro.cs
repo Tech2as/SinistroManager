@@ -9,7 +9,7 @@ public class Sinistro
      public double ValorReparo { get; private set; }
      public bool Salvado { get; private set; }
      public SinistroStatus Status { get; private set; }
-    public DateTime DataSinistro { get; private set; }
+     public DateTime DataSinistro { get; private set; }
 
     public Sinistro(
         Guid oficinaId,
