@@ -1,3 +1,6 @@
 <Solution>
+  <Project Path="SinistroManager.API/SinistroManager.API.csproj" />
+  <Project Path="SinistroManager.Application/SinistroManager.Application.csproj" />
   <Project Path="SinistroManager.Domain/SinistroManager.Domain.csproj" />
+  <Project Path="SinistroManager.Infrastructure/SinistroManager.Infrastructure.csproj" />
 </Solution>
