@@ -11,6 +11,9 @@ public class Sinistro
      public SinistroStatus Status { get; private set; }
      public DateTime DataSinistro { get; private set; }
 
+     // Teste logica
+        public UserRole UserRole { get; set; }
+
     public Sinistro(
         Guid oficinaId,
         Guid reguladorId,
@@ -27,6 +30,18 @@ public class Sinistro
         Salvado = salvado;
         Status = status;
         DataSinistro = DateTime.Now;
+    }
+
+// Lógica de negócios para aprovar sinistro (APRENDIZADO) 
+    public void AprovarSinistro()
+    {
+        if (Status != SinistroStatus.EmAnalise)
+            throw new InvalidOperationException("Somente sinistros em análise podem ser aprovados.");
+
+        if(UserRole != UserRole.Regulador)
+            throw new UnauthorizedAccessException("Apenas reguladores podem aprovar sinistros.");
+        
+        Status = SinistroStatus.Aprovado;
     }
 
 }

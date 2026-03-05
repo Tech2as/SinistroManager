@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SinistroManager.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8aaec02098fa9a1585806495be986be8a6276cbb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+012a4eb9de4d4dd6372d44390d788d668e95a866")]
 [assembly: System.Reflection.AssemblyProductAttribute("SinistroManager.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SinistroManager.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

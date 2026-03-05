@@ -5,5 +5,5 @@ public enum UserRole
     Admin = 1,
     Oficina = 2,
     Seguradora = 3,
-    Cliente = 4
+    Regulador = 4
 }
