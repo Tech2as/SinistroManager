@@ -1,6 +1,0 @@
-@SinistroManager.API_HostAddress = http://localhost:5001
-
-GET {{SinistroManager.API_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
