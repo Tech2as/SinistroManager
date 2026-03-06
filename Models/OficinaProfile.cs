@@ -4,7 +4,6 @@ public class OficinaProfile
 {
     public Guid Id { get; private set; }
     public Guid UserId { get; private set; }
-
     public string Cnpj { get; private set; }
     public string Address { get; private set; }
     public string NumberAddress { get; private set; }
