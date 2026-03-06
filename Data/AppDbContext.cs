@@ -10,6 +10,8 @@ public class AppDbContext : DbContext
     public DbSet<User> Users => Set<User>();
     public DbSet<Sinistro> Sinistros => Set<Sinistro>();
 
+      public DbSet<Apolice> Apolices => Set<Apolice>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<User>(e =>

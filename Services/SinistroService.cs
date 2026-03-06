@@ -5,7 +5,7 @@ using SinistroManager.Models;
 
 namespace SinistroManager.Services;
 
-public class SinistroService : ISinistroService
+public class SinistroService
 {
     private readonly AppDbContext _db;
 
@@ -16,8 +16,10 @@ public class SinistroService : ISinistroService
 
     public async Task<Sinistro?> GetByIdAsync(Guid id) => await _db.Sinistros.FindAsync(id);
 
-    public async Task<Sinistro> CreateAsync(Guid oficinaId, Guid reguladorId, string chassi, double valorReparo, bool salvado, SinistroStatus status)
+    public async Task<Sinistro> CreateAsync(Guid oficinaId, Guid reguladorId, string chassi, decimal valorReparo, bool salvado, SinistroStatus status)
     {
+     
+
         var sinistro = new Sinistro
         {
             Id = Guid.NewGuid(),
@@ -38,7 +40,7 @@ public class SinistroService : ISinistroService
     {
         var sinistro = await _db.Sinistros.FindAsync(sinistroId)
             ?? throw new InvalidOperationException("Sinistro não encontrado.");
-        sinistro.AprovarSinistro(callerRole);
+        sinistro.Status = SinistroStatus.Aprovado;
         await _db.SaveChangesAsync();
     }
 }

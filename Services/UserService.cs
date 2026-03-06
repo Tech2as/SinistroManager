@@ -5,7 +5,7 @@ using SinistroManager.Models;
 
 namespace SinistroManager.Services;
 
-public class UserService : IUserService
+public class UserService
 {
     private readonly AppDbContext _db;
 
