@@ -18,7 +18,6 @@ public class SinistroService
 
     public async Task<Sinistro> CreateAsync(Guid oficinaId, Guid reguladorId, string chassi, decimal valorReparo, bool salvado, SinistroStatus status)
     {
-     
 
         var sinistro = new Sinistro
         {
@@ -40,6 +39,13 @@ public class SinistroService
     {
         var sinistro = await _db.Sinistros.FindAsync(sinistroId)
             ?? throw new InvalidOperationException("Sinistro não encontrado.");
+
+        if (sinistro.Status != SinistroStatus.EmAnalise)
+            throw new InvalidOperationException("Somente sinistros em análise podem ser aprovados.");
+            
+        if (callerRole != UserRole.Regulador)
+            throw new UnauthorizedAccessException("Apenas reguladores podem aprovar sinistros.");
+
         sinistro.Status = SinistroStatus.Aprovado;
         await _db.SaveChangesAsync();
     }
