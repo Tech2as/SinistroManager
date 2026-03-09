@@ -10,7 +10,7 @@ public class AppDbContext : DbContext
     public DbSet<User> Users => Set<User>();
     public DbSet<Sinistro> Sinistros => Set<Sinistro>();
 
-      public DbSet<Apolice> Apolices => Set<Apolice>();
+    public DbSet<Apolice> Apolices => Set<Apolice>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -55,6 +55,24 @@ public class AppDbContext : DbContext
             e.Property(s => s.Status).HasConversion<int>();
             e.Property(s => s.DataSinistro).IsRequired();
 
+        });
+
+        modelBuilder.Entity<Apolice>(e =>
+        {
+            e.HasKey(a => a.Id);
+
+             e.HasOne<User>()
+            .WithMany()
+            .HasForeignKey(a => a.UserId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            e.Property(a => a.NumeroApolice)
+            .IsRequired()
+            .HasMaxLength(50);
+            
+
+            e.Property(a => a.ValorCobertura).HasColumnType("decimal(18,2)");
+            e.Property(a => a.DataHistorico).IsRequired();
         });
     }
 }
