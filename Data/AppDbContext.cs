@@ -10,6 +10,7 @@ public class AppDbContext : DbContext
     // Usuarios do sistema, incluindo oficinas e reguladores  
     public DbSet<User> Users => Set<User>();
     public DbSet<OficinaProfile> Oficinas => Set<OficinaProfile>();
+    public DbSet<ReguladorProfile> Reguladores => Set<ReguladorProfile>();
     public DbSet<Sinistro> Sinistros => Set<Sinistro>();
 
     public DbSet<Apolice> Apolices => Set<Apolice>();
@@ -70,6 +71,21 @@ public class AppDbContext : DbContext
             .IsRequired()
             .HasMaxLength(15);
 
+        });
+
+        modelBuilder.Entity<ReguladorProfile>(e =>
+        {
+            e.HasKey(r => r.Id);
+
+            e.HasOne<User>()
+            .WithOne()
+            .HasForeignKey<ReguladorProfile>(r => r.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+            e.Property(r => r.Cpf)
+            .IsRequired()
+            .HasMaxLength(11);
+            e.HasIndex(r => r.Cpf).IsUnique();
         });
 
         modelBuilder.Entity<Sinistro>(e =>
