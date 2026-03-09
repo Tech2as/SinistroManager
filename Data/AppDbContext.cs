@@ -11,6 +11,7 @@ public class AppDbContext : DbContext
     public DbSet<User> Users => Set<User>();
     public DbSet<OficinaProfile> Oficinas => Set<OficinaProfile>();
     public DbSet<ReguladorProfile> Reguladores => Set<ReguladorProfile>();
+    public DbSet<SeguradoraProfile> Seguradoras => Set<SeguradoraProfile>();
     public DbSet<Sinistro> Sinistros => Set<Sinistro>();
 
     public DbSet<Apolice> Apolices => Set<Apolice>();
@@ -84,6 +85,21 @@ public class AppDbContext : DbContext
 
             e.Property(r => r.Cpf)
             .IsRequired()
+            .HasMaxLength(11);
+            e.HasIndex(r => r.Cpf).IsUnique();
+        });
+
+        modelBuilder.Entity<SeguradoraProfile>(e =>
+        {
+            e.HasKey(s => s.Id);
+
+            e.HasOne<User>()
+            .WithOne()
+            .HasForeignKey<SeguradoraProfile>(s => s.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+            e.Property(s => s.Cpf)
+             .IsRequired()
             .HasMaxLength(11);
             e.HasIndex(r => r.Cpf).IsUnique();
         });
