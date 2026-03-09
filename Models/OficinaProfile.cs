@@ -6,20 +6,21 @@ public class OficinaProfile
     public Guid UserId { get; private set; }
     public string Cnpj { get; private set; }
     public string Address { get; private set; }
-    public string NumberAddress { get; private set; }
+    public string AddressNumber { get; private set; }
     public string Cep { get; private set; }
     public string City { get; private set; }
     public string State { get; private set; }
     public string PhoneNumber { get; private set; }
 
-    public OficinaProfile(Guid userId, string cnpj, string address, string numberAddress,
+    private OficinaProfile() { }
+    public OficinaProfile(Guid userId, string cnpj, string address, string addressNumber,
         string cep, string city, string state, string phoneNumber)
     {
         Id = Guid.NewGuid();
         UserId = userId;
         Cnpj = cnpj;
         Address = address;
-        NumberAddress = numberAddress;
+        AddressNumber = addressNumber;
         Cep = cep;
         City = city;
         State = state;
