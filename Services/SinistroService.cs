@@ -37,14 +37,19 @@ public class SinistroService
 
     public async Task AprovarAsync(Guid sinistroId, UserRole callerRole)
     {
-        var sinistro = await _db.Sinistros.FindAsync(sinistroId)
-            ?? throw new InvalidOperationException("Sinistro não encontrado.");
+        var sinistro = await _db.Sinistros
+        .Include(s => s.Apolice)
+        .FirstOrDefaultAsync(s => s.Id == sinistroId)
+        ?? throw new InvalidOperationException("Sinistro não encontrado.");
 
         if (sinistro.Status != SinistroStatus.EmAnalise)
             throw new InvalidOperationException("Somente sinistros em análise podem ser aprovados.");
             
         if (callerRole != UserRole.Regulador)
             throw new UnauthorizedAccessException("Apenas reguladores podem aprovar sinistros.");
+
+        if (sinistro.ValorReparo > sinistro.Apolice.ValorCobertura)
+            throw new InvalidOperationException("Valor ultrapassou o limite da apólice");
 
         sinistro.Status = SinistroStatus.Aprovado;
         await _db.SaveChangesAsync();
